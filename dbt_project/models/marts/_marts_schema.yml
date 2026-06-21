@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: stg_wiki_pageviews
+    columns:
+      - name: article
+        tests:
+          - not_null
+      - name: pageview_date
+        tests:
+          - not_null
+
+  - name: mart_trending_articles
+    columns:
+      - name: article
+        tests:
+          - not_null
+      - name: page_rank
+        tests:
+          - not_null
+      - name: views
+        tests:
+          - not_null

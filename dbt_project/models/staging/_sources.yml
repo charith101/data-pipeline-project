@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: raw_pipeline
+    database: data-pipeline-project-500013
+    schema: raw_pipeline
+    tables:
+      - name: wiki_top_pageviews

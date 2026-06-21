@@ -220,3 +220,7 @@ __marimo__/
 
 gcp-key.json
 .env
+
+target/
+dbt_packages/
+logs/
