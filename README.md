@@ -13,7 +13,7 @@ flowchart LR
     C --> D["dbt staging models"]
     D --> E["dbt mart models"]
     E --> F["BigQuery: analytics_pipeline"]
-    F --> G["Looker Studio Dashboard"]
+    F --> G["Data Studio Dashboard"]
     H["GitHub Actions (daily cron)"] -.-> B
     H -.-> D
 ```
@@ -26,7 +26,7 @@ flowchart LR
 | Transformation | dbt Core |
 | Data quality | dbt schema + custom singular tests |
 | Orchestration | GitHub Actions (daily cron + manual trigger) |
-| Visualization | Looker Studio |
+| Visualization | Data Studio |
 
 ## What it does
 Every day, the pipeline pulls the ~1,000 most-viewed English Wikipedia
