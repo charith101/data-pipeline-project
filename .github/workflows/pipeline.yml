@@ -1,0 +1,38 @@
+name: Daily Wikipedia Pipeline
+
+on:
+  schedule:
+    - cron: "0 3 * * *"   # 3:00 AM UTC, every day
+  workflow_dispatch: {}     # lets you trigger it manually from the Actions tab
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+    env:
+      GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v3
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run extractor
+        run: python extract/extract.py
+
+      - name: Run dbt models
+        run: dbt run --project-dir dbt_project --profiles-dir dbt_project
+
+      - name: Run dbt tests
+        run: dbt test --project-dir dbt_project --profiles-dir dbt_project
