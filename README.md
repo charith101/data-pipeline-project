@@ -6,17 +6,17 @@ production data teams.
 
 ## Architecture
 
-\`\`\`mermaid
+```mermaid
 flowchart LR
-    A[Wikipedia Pageviews API] --> B[Python Extractor]
-    B --> C[(BigQuery: raw_pipeline)]
-    C --> D[dbt staging models]
-    D --> E[dbt mart models]
-    E --> F[(BigQuery: analytics_pipeline)]
-    F --> G[Looker Studio Dashboard]
-    H[GitHub Actions — daily cron] -.triggers.-> B
-    H -.triggers.-> D
-\`\`\`
+    A["Wikipedia Pageviews API"] --> B["Python Extractor"]
+    B --> C["BigQuery: raw_pipeline"]
+    C --> D["dbt staging models"]
+    D --> E["dbt mart models"]
+    E --> F["BigQuery: analytics_pipeline"]
+    F --> G["Looker Studio Dashboard"]
+    H["GitHub Actions (daily cron)"] -.-> B
+    H -.-> D
+```
 
 ## Tech stack
 | Layer | Tool |
